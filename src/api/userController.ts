@@ -83,7 +83,10 @@ export async function listUserVoByPageUsingPost(
 }
 
 /** 用户登录 POST /api/user/login */
-export async function loginUsingPost(body: API.UserLoginRequest, options?: { [key: string]: any }) {
+export async function userLoginUsingPost(
+  body: API.UserLoginRequest,
+  options?: { [key: string]: any }
+) {
   return request<API.BaseResponseLoginUserVO_>('/api/user/login', {
     method: 'POST',
     headers: {
@@ -103,7 +106,7 @@ export async function userLogoutUsingPost(options?: { [key: string]: any }) {
 }
 
 /** 用户注册 POST /api/user/register */
-export async function registerUsingPost(
+export async function userRegisterUsingPost(
   body: API.UserRegisterRequest,
   options?: { [key: string]: any }
 ) {
