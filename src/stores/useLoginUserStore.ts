@@ -6,7 +6,8 @@ export const useLoginUserStore = defineStore('loginUser', () => {
   const loginUser = ref<any>({
     id: null,
     userName: '未登录',
-    userAvatar: ''
+    userAvatar: '',
+    userRole: 'user'
   })
 
   /**

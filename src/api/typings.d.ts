@@ -131,6 +131,7 @@ declare namespace API {
   type UserVO = {
     createTime?: string
     id?: number
+    updateTime?: string
     userAccount?: string
     userAvatar?: string
     userName?: string

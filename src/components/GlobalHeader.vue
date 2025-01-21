@@ -42,7 +42,7 @@
 
 </template>
 <script lang="ts" setup>
-import { h, ref } from 'vue'
+import { computed, h, ref } from 'vue'
 import { HomeOutlined, LogoutOutlined } from '@ant-design/icons-vue'
 import { MenuProps, message } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
@@ -52,7 +52,7 @@ import { userLogoutUsingPost } from '@/api/userController.ts'
 
 const loginUserStore = useLoginUserStore()
 
-const items = ref<MenuProps['items']>([
+const originItems = [
   {
     key: '/',
     icon: () => h(HomeOutlined),
@@ -65,12 +65,31 @@ const items = ref<MenuProps['items']>([
     title: '关于'
   },
   {
+    key: '/admin',
+    label: '用户管理',
+    title: '用户管理'
+  },
+  {
     key: 'others',
     label: h('a', { href: 'http://81.70.86.227:8787', target: '_blank' }, '进入地球Online的男人'),
     title: '进入地球Online的男人'
   }
-])
+]
 
+// 过滤菜单项
+const filterMenus = (menus = [] as MenuProps['items']) => {
+  return menus?.filter((menu) => {
+    if (menu?.key?.startsWith('/admin')) {
+      const loginUser = loginUserStore.loginUser
+      if (!loginUser || loginUser.userRole !== 'admin') {
+        return false
+      }
+    }
+    return true
+  })
+}
+
+const items = computed(() => filterMenus(originItems))
 
 const router = useRouter()
 

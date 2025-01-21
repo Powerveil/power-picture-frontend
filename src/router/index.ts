@@ -24,7 +24,7 @@ const router = createRouter({
       component: UserRegisterPage,
     },
     {
-      path: '/user/admin',
+      path: '/admin',
       name: '用户管理',
       component: UserAdminPage,
     },
